@@ -74,7 +74,7 @@
             <div class="is-size-5 publication-authors">
               <span class="author-block"><sup>1</sup>HKUST,</span>
               <span class="author-block"><sup>2</sup>HKU,</span>
-              <span class="author-block"><sup>2</sup>Tencent AI Lab</span>
+              <span class="author-block"><sup>3</sup>Tencent AI Lab</span>
             </div>
             <p>
             <span style="font-weight: bold;">Siggraph 2024 (Conference Track)</span>
@@ -167,7 +167,7 @@
             takes as input the past motion of F frames of the character, and user control parameters, and then learns to capture the conditional distribution of the future motions x (of F frames).
             During runtime, CAMDM is applied at each frame with the on-the-fly collected character's historical poses, user control inputs, and randomly sampled Gaussian noise, and then sample from the conditional motion distribution, obtaining a sequence of realistic future postures to be displayed.
             The character animated using this autoregressive generation approach can exhibit coherent and diverse motions while adhering to user inputs. 
-            This is achieved because \name is trained to capture all possible future motions under different conditions, yielding a wide range of plausible animations.
+            This is achieved because x is trained to capture all possible future motions under different conditions, yielding a wide range of plausible animations.
           </p>
         </div> 
         <img src="assets/pipeline.png">
