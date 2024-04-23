@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
+  <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Taming Diffusion Probabilistic Models for Character Control</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+  
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="stylesheet" href="./static/css/result.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Taming Diffusion Probabilistic Models for Character Control</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://aruichen.github.io/">Rui Chen</a><sup>*</sup>,</span>
+            <span class="author-block">
+              <a href="https://rubbly.cn/">Mingyi Shi</a><sup>*</sup>,</span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=o31BPFsAAAAJ&hl=en">Shaoli Huang</a><sup></sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://ece.hkust.edu.hk/pingtan">Ping Tan</a><sup></sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com.hk/citations?user=TApLOhkAAAAJ&hl=en">>Taku Komura</a><sup></sup>,
+            </span>
+            <span class="https://ece.hkust.edu.hk/pingtan">
+              <a href="https://scholar.google.com.hk/citations?user=TApLOhkAAAAJ&hl=en">Xuelin Chen</a><sup></sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="footnote"><sup>*</sup>Equal contribution</span>
+            <p>
+            <span style="font-weight: bold;">Siggraph 2024</span>
+            <p>
+          </div>
+
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="."
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>ArXiv</span>
+                </a>
+              </span>
+              <!-- PDF Link. -->
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="."
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="my-hr">
+  <hr>
+</div>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            We present a novel character control framework that effectively utilizes motion diffusion probabilistic models to generate high-quality and diverse character animations, responding in real-time to a variety of dynamic user-supplied control signals. 
+            At the heart of our method lies a transformer-based Conditional Autoregressive Motion Diffusion Model (\name), which takes as input the character's historical motion and can generate a range of diverse potential future motions conditioned on high-level, coarse user control.
+            To meet the demands for diversity, controllability, and computational efficiency required by a real-time controller,
+            we incorporate several key algorithmic designs. 
+            These include separate condition tokenization, classifier-free guidance on past motion, and heuristic future trajectory extension, all designed to address the challenges associated with taming motion diffusion probabilistic models for character control.
+            As a result,
+            our work represents the first model
+            that enables real-time generation of high-quality, diverse character animations based on user interactive control, supporting animating the character in multiple styles with a single
+            unified model. 
+            We evaluate our method on a diverse set of locomotion skills, demonstrating the merits of our method over existing character controllers.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <hr>
+
+    <!-- Paper video. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/Xbzl4HzFiNo?rel=0&amp;modestbranding=1"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+    <!--/ Paper video. -->
+   
+    <hr>
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Method</h2>
+        <div class="content has-text-justified">
+          <p>
+            Given a large-scale locomotion dataset $\dataset$,
+            our method first trains a Conditional Autoregressive Motion Diffusion Model (CAMDM), which
+            takes as input the past motion $\pastmotion$ of $\nbframepast$ frames of the character, and user control parameters $\control$, and then learns to capture the conditional distribution of the future motions $\sample$ (of $\nbframepred$ frames).
+            During runtime, \name is applied at each frame with the on-the-fly collected character's historical poses, user control inputs, and randomly sampled Gaussian noise, and then sample from the conditional motion distribution, obtaining a sequence of realistic future postures to be displayed.
+            %that are coherent with the past motion while following the user inputs.
+            The character animated using this autoregressive generation approach can exhibit coherent and diverse motions while adhering to user inputs. 
+            This is achieved because \name is trained to capture all possible future motions under different conditions, yielding a wide range of plausible animations.
+          </p>
+        </div> 
+        <img src=".">
+      </div>
+    </div>
+
+  </div>   
+</section>  
+
+
+    <!--/ Matting. -->
+
+<!-- <div class="gif-group">
+  <div class="gif-images">
+    <img src="./static/gif/bread.gif">
+    <img src="./static/gif/bread_geo.gif">
+  </div>
+  <div class="gif-label">A delicious croissant</div>
+</div>
+
+<div class="gif-group">
+  <div class="gif-images">
+    <img src="./static/gif/bread.gif">
+    <img src="./static/gif/bread_geo.gif">
+  </div>
+  <div class="gif-label">Group 2</div>
+</div> -->
+
+
+<div class="my-hr">
+  <hr>
+</div>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>
+      @InProceedings{chenrui2024,
+        author = {Rui Chen, Mingyi Shi, Shaoli Huang, Ping Tan, Taku Komura, Xuelin Chen},
+        title = {Taming Diffusion Probabilistic Models for Character Control},
+        journal={ACM SIGGRAPH 2024 Conference Proceedings},
+        year={2024}
+      }
+      </code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <!-- <div class="column is-8"> -->
+        <div class="content">
+          <p>
+            This website is constructed using the source code provided by <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>, 
+            allow us to express our appreciation for their contribution.                              
+          </p>
+    
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
