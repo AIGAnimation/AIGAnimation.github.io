@@ -162,7 +162,7 @@
         <h2 class="title is-3">Method</h2>
         <div class="content has-text-justified">
           <p>
-            Given a large-scale locomotion dataset $\dataset$,
+            Given a large-scale locomotion dataset 100STYLE,
             our method first trains a Conditional Autoregressive Motion Diffusion Model (CAMDM), which
             takes as input the past motion of F frames of the character, and user control parameters, and then learns to capture the conditional distribution of the future motions x (of F frames).
             During runtime, CAMDM is applied at each frame with the on-the-fly collected character's historical poses, user control inputs, and randomly sampled Gaussian noise, and then sample from the conditional motion distribution, obtaining a sequence of realistic future postures to be displayed.
