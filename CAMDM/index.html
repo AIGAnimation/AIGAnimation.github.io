@@ -159,14 +159,13 @@
           <p>
             Given a large-scale locomotion dataset $\dataset$,
             our method first trains a Conditional Autoregressive Motion Diffusion Model (CAMDM), which
-            takes as input the past motion $\pastmotion$ of $\nbframepast$ frames of the character, and user control parameters $\control$, and then learns to capture the conditional distribution of the future motions $\sample$ (of $\nbframepred$ frames).
-            During runtime, \name is applied at each frame with the on-the-fly collected character's historical poses, user control inputs, and randomly sampled Gaussian noise, and then sample from the conditional motion distribution, obtaining a sequence of realistic future postures to be displayed.
-            %that are coherent with the past motion while following the user inputs.
+            takes as input the past motion of F frames of the character, and user control parameters, and then learns to capture the conditional distribution of the future motions x (of F frames).
+            During runtime, CAMDM is applied at each frame with the on-the-fly collected character's historical poses, user control inputs, and randomly sampled Gaussian noise, and then sample from the conditional motion distribution, obtaining a sequence of realistic future postures to be displayed.
             The character animated using this autoregressive generation approach can exhibit coherent and diverse motions while adhering to user inputs. 
             This is achieved because \name is trained to capture all possible future motions under different conditions, yielding a wide range of plausible animations.
           </p>
         </div> 
-        <img src=".">
+        <img src="assests/pipeline.png">
       </div>
     </div>
 
