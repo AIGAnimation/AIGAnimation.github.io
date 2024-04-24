@@ -46,6 +46,15 @@ body {
 
 .publication-title {
     font-family: 'Google Sans', sans-serif;
+
+}
+
+@media (max-width: 900px) {
+  
+  .publication-title {
+    font-size: 2em !important;
+    
+  }
 }
 
 .publication-authors {
