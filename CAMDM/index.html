@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
@@ -8,18 +7,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Taming Diffusion Probabilistic Models for Character Control</title>
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NLE0V1WZWF"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-
+    function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
 
-    gtag('config', 'G-PYVRSFMDRL');
+    gtag('config', 'G-NLE0V1WZWF');
   </script>
   
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
@@ -50,37 +44,37 @@
       <div class="columns is-centered">
         <div class="column has-text-centered">
           <h1 class="title is-1 publication-title">Taming Diffusion Probabilistic Models for Character Control</h1>
+          <p style="padding-bottom: 10px;">
+            <span class="is-size-5" style="font-weight: bold;">Siggraph 2024</span>
+            <p>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
-              <a href="https://aruichen.github.io/">Rui Chen</a><sup>*</sup>,</span>
+              <a href="https://aruichen.github.io/">Rui Chen</a><sup>*</sup><sup>1</sup>,</span>
             <span class="author-block">
-              <a href="https://rubbly.cn/">Mingyi Shi</a><sup>*</sup>,</span>
+              <a href="https://rubbly.cn/">Mingyi Shi</a><sup>*</sup><sup>2</sup>,</span>
             <span class="author-block">
-              <a href="https://scholar.google.com/citations?user=o31BPFsAAAAJ&hl=en">Shaoli Huang</a><sup></sup>,
+              <a href="https://scholar.google.com/citations?user=o31BPFsAAAAJ&hl=en">Shaoli Huang</a><sup>3</sup>,
             </span>
             <span class="author-block">
-              <a href="https://ece.hkust.edu.hk/pingtan">Ping Tan</a><sup></sup>,
+              <a href="https://ece.hkust.edu.hk/pingtan">Ping Tan</a><sup>1</sup>,
             </span>
             <span class="author-block">
-              <a href="https://scholar.google.com.hk/citations?user=TApLOhkAAAAJ&hl=en">Taku Komura</a><sup></sup>,
+              <a href="https://scholar.google.com.hk/citations?user=TApLOhkAAAAJ&hl=en">Taku Komura</a><sup>2</sup>,
             </span>
             <span class="author-block">
-              <a href="https://xuelin-chen.github.io/">Xuelin Chen</a><sup></sup>
+              <a href="https://xuelin-chen.github.io/">Xuelin Chen</a><sup>3</sup>
             </span>
           </div>
 
           <div class="is-size-5 publication-authors">
-            <span class="footnote"><sup>*</sup>Equal contribution</span>
-            <div class="is-size-5 publication-authors">
-              <span class="author-block"><sup>1</sup>HKUST,</span>
-              <span class="author-block"><sup>2</sup>HKU,</span>
-              <span class="author-block"><sup>3</sup>Tencent AI Lab</span>
+            <span style="font-size: 18px;" class="footnote"><sup>*</sup>Equal contribution</span>
+            <div class="is-size-6 publication-authors">
+              <span class="author-block"><sup>1 </sup>Hong Kong University of Science and Technology,</span>
+              <span class="author-block"><sup>2 </sup>The University of Hong Kong,</span>
+              <span class="author-block"><sup>3 </sup>Tencent AI Lab</span>
             </div>
-            <p>
-            <span style="font-weight: bold;">Siggraph 2024</span>
-            <p>
+            
           </div>
-
 
           <div class="column has-text-centered">
             <div class="publication-links">
@@ -122,13 +116,11 @@
   </div>
 </section>
 
-<div class="my-hr">
-  <hr>
-</div>
 
-<section class="section">
+<section class="section" style="background-color: #f5f5f5;">
   <div class="container is-max-desktop">
     <!-- Abstract. -->
+    
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">Abstract</h2>
@@ -148,9 +140,12 @@
         </div>
       </div>
     </div>
+  </div>
     <!--/ Abstract. -->
+</section>
 
-    <hr>
+<section class="section">
+  <div class="container is-max-desktop">
 
     <!-- Paper video. -->
     <div class="columns is-centered has-text-centered">
@@ -163,9 +158,11 @@
       </div>
     </div>
     <!--/ Paper video. -->
-   
-    <hr>
+  </div>
+</section>
 
+<section class="section">
+  <div class="container is-max-desktop">  
     <div class="columns is-centered has-text-centered">
       <div class="column is-full-width">
         <h2 class="title is-3">Method</h2>
@@ -179,38 +176,122 @@
             This is achieved because x is trained to capture all possible future motions under different conditions, yielding a wide range of plausible animations.
           </p>
         </div> 
-        <img src="assets/pipeline.png">
+        <img style="width: 60%;" src="assets/pipeline.png">
       </div>
     </div>
-
   </div>   
 </section>  
 
+<section class="section" style="background-color: #f5f5f5;">
+  <div class="container is-max-desktop has-text-centered">
+    <h2 style="padding-top: 20px;" class="title is-3">Results</h2>
+    <!-- <h2 class="title is-3">Results</h2> -->
+    <div class="columns is-centered ">
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-5">Natural Transition</h2>
+          <p>
+            Our method produce natural and smooth transition between different styles of motion.
+          </p>
+          <video  controls muted loop playsinline height="100%">
+            <source src="./assets/videos/result_transition_compression.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!--/ Visual Effects. -->
 
-    <!--/ Matting. -->
+      <!-- Matting. -->
+      <div class="column">
+        <h2 class="title is-5">Robust Control</h2>
+        <div class="columns is-centered">
+          <div class="column content">
+            <p>
+              Our method can generate robust and high-quality animations based on user-applied control.
+            </p>
+            <video  controls loop playsinline height="100%">
+              <source src="./assets/videos/result_robust_compression.mp4"
+                    type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<!-- <div class="gif-group">
-  <div class="gif-images">
-    <img src="./static/gif/bread.gif">
-    <img src="./static/gif/bread_geo.gif">
+    <h2 style="padding-top: 20px;" class="title is-5">Variability within Styles</h2>
+    <p class="column content">
+      Our method is a probabilistic diffusion model, rooted in the denoising process of random noise that 
+      yields different results even when provided with different conditional inputs. 
+      The method is adept at generating diverse intra-style motions, offering a variability of movements 
+      within each style while effectively circumventing the 'mean pose' issue. 
+    </p>
+    
+    <div class="columns is-centered ">
+      <div class="column">
+        <div class="content">
+         
+          <video  controls muted loop playsinline height="100%">
+            <source src="./assets/videos/result_diversity_waving_compression.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!--/ Visual Effects. -->
+
+      <!-- Matting. -->
+      <div class="column">
+        <div class="columns is-centered">
+          <div class="column content">
+            <video  controls loop playsinline height="100%">
+              <source src="./assets/videos/result_diversity_drunk_compression.mp4"
+                    type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
-  <div class="gif-label">A delicious croissant</div>
-</div>
+</section>
 
-<div class="gif-group">
-  <div class="gif-images">
-    <img src="./static/gif/bread.gif">
-    <img src="./static/gif/bread_geo.gif">
+<section class="section">
+  <div class="container is-max-desktop has-text-centered">
+    <h2 style="padding-top: 20px;" class="title is-3">Ablation</h2>
+    <p class="column content">
+      We conduct ablation studies to evaluate the effectiveness of our proposed designs.
+    
+      (1) <b>Multi-token</b> : The system, when functioning without a multi-token design, tends to generate more artifacts and exhibits subpar control. 
+      (2) <b>CFG on past motion</b> : When compared to the default CFG integrated with past motion, as utilized in our method, the application of CFG on the conditional style label results in a less desirable style transition.
+      <br>For more ablation on HFTE/Diffusion steps/Backbone, etc, please refer to our paper.
+    </p>
+    <div class="columns is-centered ">
+      <div class="column">
+        <div class="content">
+         
+          <video  controls muted loop playsinline height="100%">
+            <source src="./assets/videos/ablation1_compression.mp4" type="video/mp4">
+          </video>
+          <p style="padding-top: 10px;">w/o vs. w multi-token</p>
+        </div>
+      </div>
+      <!--/ Visual Effects. -->
+
+      <!-- Matting. -->
+      <div class="column">
+        <div class="columns is-centered">
+          <div class="column content">
+            <video  controls loop playsinline height="100%">
+              <source src="./assets/videos/ablation2_compression.mp4"
+                    type="video/mp4">
+              
+            </video>
+            <p style="padding-top: 10px;">w/o vs. w CFG on past motion</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="gif-label">Group 2</div>
-</div> -->
+</section>
 
-
-<div class="my-hr">
-  <hr>
-</div>
-
-<section class="section" id="BibTeX">
+<section class="section" id="BibTeX" >
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
     <pre><code>
