@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AIGAnimation &mdash; Projects</title>
+  <meta name="description"
+    content="AIGAnimation research projects on generative and controllable character and hand animation." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #fbfbfd;
+      --bg-soft: #eef0f4;
+      --card: #ffffff;
+      --card-hover: #f7f8fb;
+      --border: #e3e6ec;
+      --text: #1a1c22;
+      --muted: #616875;
+      --accent: #3b5bdb;
+      --accent-soft: rgba(59, 91, 219, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: radial-gradient(1200px 700px at 50% -10%, #eef2fb 0%, var(--bg) 55%);
+      color: var(--text);
+      font-family: "Inter", system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    main {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 24px 96px;
+    }
+
+    /* ---------- header ---------- */
+    header.hero {
+      text-align: center;
+      padding: 96px 0 56px;
+    }
+
+    .eyebrow {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.8rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 18px;
+    }
+
+    header.hero h1 {
+      font-family: "Newsreader", serif;
+      font-weight: 500;
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      line-height: 1.05;
+      margin: 0 0 18px;
+      letter-spacing: -0.01em;
+    }
+
+    header.hero p {
+      max-width: 620px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    .hero-links {
+      margin-top: 26px;
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .hero-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 18px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.92rem;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .hero-links a:hover {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    /* ---------- project grid ---------- */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+
+    @media (max-width: 760px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+    }
+
+    .card {
+      box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04), 0 6px 20px -12px rgba(16, 24, 40, 0.12);
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+      box-shadow: 0 22px 48px -20px rgba(59, 91, 219, 0.28);
+    }
+
+    .card-media {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      background: var(--bg-soft);
+      overflow: hidden;
+    }
+
+    .card-media video,
+    .card-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-body {
+      padding: 22px 24px 26px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .venue {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 10px;
+    }
+
+    .card h2 {
+      font-family: "Newsreader", serif;
+      font-weight: 500;
+      font-size: 1.5rem;
+      line-height: 1.25;
+      margin: 0 0 12px;
+      letter-spacing: -0.01em;
+    }
+
+    .card p {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 0.96rem;
+      flex: 1;
+    }
+
+    .card-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--accent);
+    }
+
+    .card-cta .arrow {
+      transition: transform 0.24s ease;
+    }
+
+    .card:hover .card-cta .arrow {
+      transform: translateX(5px);
+    }
+
+    /* ---------- footer ---------- */
+    footer {
+      text-align: center;
+      margin-top: 72px;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    footer a {
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+    }
+
+    footer a:hover {
+      color: var(--text);
+      border-color: var(--accent);
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <header class="hero">
+      <p class="eyebrow">AIGA!nimation</p>
+      <h1>Generative &amp; Controllable<br />Character Animation</h1>
+      <p>
+        A collection of our research projects on learning generative priors for
+        controllable, real-time character and hand motion.
+      </p>
+      <div class="hero-links">
+        <a href="https://github.com/AIGAnimation" target="_blank" rel="noopener">
+          <span>&#60;/&#62;</span> GitHub
+        </a>
+      </div>
+    </header>
+
+    <section class="grid">
+      <!-- HandPrior -->
+      <a class="card" href="./HandPrior/index.html">
+        <div class="card-media">
+          <video src="./HandPrior/assets/teaser.mp4" autoplay loop muted playsinline
+            poster="./HandPrior/assets/inputandoutput.jpg"></video>
+        </div>
+        <div class="card-body">
+          <p class="venue">SCA 2026</p>
+          <h2>Prior-First, Condition-Second</h2>
+          <p>
+            Scalable and controllable hand motion completion. A prior-first framework
+            that generates coherent, kinematically consistent hand motion from body
+            motion in real time.
+          </p>
+          <span class="card-cta">View project <span class="arrow">&rarr;</span></span>
+        </div>
+      </a>
+
+      <!-- CAMDM -->
+      <a class="card" href="./CAMDM/index.html">
+        <div class="card-media">
+          <video src="./CAMDM/assets/videos/result_robust_compression.mp4" autoplay loop muted playsinline
+            poster="./CAMDM/assets/pipeline.png"></video>
+        </div>
+        <div class="card-body">
+          <p class="venue">SIGGRAPH 2024</p>
+          <h2>Taming Diffusion Probabilistic Models for Character Control</h2>
+          <p>
+            A diffusion-based framework for real-time, responsive character control that
+            produces high-quality and diverse character animations.
+          </p>
+          <span class="card-cta">View project <span class="arrow">&rarr;</span></span>
+        </div>
+      </a>
+    </section>
+
+    <footer>
+      &copy; AIGAnimation &middot;
+      <a href="https://github.com/AIGAnimation" target="_blank" rel="noopener">github.com/AIGAnimation</a>
+    </footer>
+  </main>
+</body>
+
+</html>
