@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prior-First, Condition-Second: Scalable and Controllable Hand Motion Completion</title>
+  <meta name="description"
+    content="A prior-first, condition-second framework for real-time, controllable body-conditioned hand motion completion. SCA 2026." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <main>
+
+    <!-- ============ HEADER ============ -->
+    <header class="hero">
+      <h1 class="title">
+        Prior-First, Condition-Second <br />
+        <span class="title-sub">Scalable and Controllable Hand Motion Completion</span>
+      </h1>
+
+      <div class="authors">
+        <a class="author" href="https://rubbly.cn/" target="_blank" rel="noopener">Mingyi Shi<sup>1</sup></a>
+        <a class="author" href="https://xuelin-chen.github.io/" target="_blank" rel="noopener">Xuelin
+          Chen<sup>2</sup></a>
+        <a class="author" href="https://i.cs.hku.hk/~taku/" target="_blank" rel="noopener">Taku Komura<sup>1</sup></a>
+      </div>
+
+      <div class="affiliations">
+        <span><sup>1</sup>The University of Hong Kong</span>
+        <span><sup>2</sup>Adobe Research, London, UK</span>
+      </div>
+
+      <div class="venue">ACM SIGGRAPH / Eurographics Symposium on Computer Animation (SCA) 2026</div>
+
+      <nav class="buttons">
+        <a class="btn btn-soon" href="#" title="Coming soon" aria-disabled="true">
+          <span class="btn-icon">&#128220;</span> arXiv
+        </a>
+        <a class="btn" href="https://github.com/AIGAnimation/HandPrior" target="_blank" rel="noopener" title="Code">
+          <span class="btn-icon">&#60;/&#62;</span> Code
+        </a>
+        <a class="btn btn-soon" href="#" title="Coming soon" aria-disabled="true">
+          <span class="btn-icon">&#128202;</span> Data
+          <span class="soon-badge">soon</span>
+        </a>
+        <a class="btn" href="https://github.com/AIGAnimation/HandPrior" target="_blank" rel="noopener"
+          title="Blender Add-on">
+          <span class="btn-icon">&#129513;</span> Blender Add-on
+        </a>
+        <a class="btn btn-soon" href="#" title="Coming soon" aria-disabled="true">
+          <span class="btn-icon">&#9654;</span> Demo
+          <span class="soon-badge">soon</span>
+        </a>
+      </nav>
+    </header>
+
+    <!-- ============ TEASER ============ -->
+    <section class="teaser">
+      <video src="assets/teaser.mp4" autoplay loop muted playsinline></video>
+      <p class="caption">
+        Our method robustly completes high-fidelity hand motion conditioned on global body dynamics and
+        optional semantic controls. Instead of training a fully end-to-end conditioned generator, we
+        constrain the outputs to a physically plausible kinematic manifold, resulting in coherent
+        articulation and strong robustness across diverse inputs.
+      </p>
+    </section>
+
+    <section class="section">
+      <p class="give-back">
+        We are happy to give back to the community &mdash; for example, by adding hands to existing
+        motion datasets. Contact us
+        <a class="mail-link" href="mailto:myshi@cs.hku.hk" aria-label="Email us" title="Email us"><span class="btn-icon">&#9993;</span></a>
+        to enhance your dataset. 
+      </p>
+      <ul class="roadmap">
+        <li class="todo">Add hand poses to the <strong>bone-seed 144h</strong> dataset.</li>
+      </ul>
+    </section>
+
+    <!-- ============ TAGLINE / HIGHLIGHTS ============ -->
+    <section class="section">
+      <h2>Hand Motion Completion</h2>
+      <p class="lead">
+        Generate coherent, kinematically consistent <strong>hand motion from body motion</strong>
+        in real time &mdash; then steer it with text or attributes using only a few hours of labels.
+      </p>
+      <ul class="highlights">
+        <li>Streaming autoregressive body&ndash;hand prior running at <strong>450+ FPS</strong> on a single RTX 4090.
+        </li>
+        <li>Learns the kinematic prior from <strong>~100 hours</strong> of unstructured, unlabeled motion.</li>
+        <li>Adds text- and attribute-driven control with only <strong>a few hours</strong> of paired labels.</li>
+        <li>Interactive <strong>Blender add-on</strong>: 9000 frames in ~15 seconds on a MacBook CPU.</li>
+      </ul>
+
+      <figure class="media">
+        <video src="assets/videos/sec1_results.mp4" autoplay loop muted playsinline></video>
+        <figcaption>
+          Given only the body motion, our prior produces stable wrists and plausible finger articulation,
+          whereas end-to-end baselines exhibit unstable wrist attachment, implausible fingers, or collapse
+          to a single &ldquo;safe&rdquo; mean pose.
+        </figcaption>
+      </figure>
+    </section>
+
+    <!-- ============ UNDERSTAND IN 5 SECONDS ============ -->
+    <section class="section">
+      <h2>Understand core idea in 5 seconds</h2>
+      <p>
+        Controllable motion generation should be framed as <em>sampling from a learned kinematic prior</em>,
+        rather than learning an end-to-end mapping from sparse conditions to motion trajectories.
+        We call this the <strong>prior-first, condition-second</strong> paradigm:
+      </p>
+      <ol class="steps">
+        <li>
+          <strong>Prior first.</strong> Learn how the body and hands coordinate &mdash; how parts transfer
+          momentum and evolve over time &mdash; from abundant <em>unlabeled</em> motion, under minimal
+          semantic assumptions.
+        </li>
+        <li>
+          <strong>Condition second.</strong> Freeze that prior and attach <em>lightweight adapters</em> that
+          simply steer sampling toward a user's intent (text or attributes), instead of relearning
+          kinematics for every control interface.
+        </li>
+      </ol>
+    </section>
+
+    <!-- ============ BUT WAIT, WHAT IF... ============ -->
+    <section class="section">
+      <h2>But wait, why not just&hellip;?</h2>
+
+      <div class="qa">
+        <h3>Why not train one end-to-end conditioned generator?</h3>
+        <p>
+          Semantic supervision for motion is scarce, expensive, and dataset-specific: capture protocols,
+          skeletons, and annotation schemes rarely transfer. Learning kinematics <em>and</em> semantics
+          jointly from limited paired data overfits and under-uses the conditions. By separating them, the
+          prior captures motion regularities that are invariant across datasets, and control becomes a
+          cheap, dataset-specific residual on top.
+        </p>
+      </div>
+
+      <div class="qa">
+        <h3>How do the hands stay coupled to the body?</h3>
+        <p>
+          Biological motion is driven by energy transfer along a specific kinematic chain, not by
+          attending to all joints indiscriminately. Our <strong>Kinematic Chain Cascading Attention (KCCA)</strong>
+          restricts the hand query to the ordered root&rarr;spine&rarr;shoulder&rarr;arm&rarr;forearm chain and
+          gates it with the <em>clean</em> root state. This keeps attention stable even at high diffusion
+          noise levels, so hands do not &ldquo;float&rdquo; or slide relative to the body.
+        </p>
+      </div>
+
+      <div class="qa">
+        <h3>How can you control it with so few labels?</h3>
+        <p>
+          Semantic commands operate at different kinematic levels &mdash; &ldquo;energetically&rdquo; modulates
+          upstream momentum, while &ldquo;pinch with two fingers&rdquo; targets local articulation. Our
+          <strong>semantically-layered adapters</strong> inject conditioning through zero-initialized,
+          layer-specific gates at the right stages of the frozen prior. The adapter only learns the minimal
+          residual for navigation on the manifold, converging with as little as a few hours of labeled data.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ INPUT / OUTPUT SPACE ============ -->
+    <section class="section">
+      <h2>Input and output space</h2>
+      <p>
+        Our prior is a <strong>streaming, clip-level autoregressive</strong> model: instead of generating a
+        whole take at once, we split a long body motion into short overlapping segments and complete the
+        hand motion segment by segment. At each step the model predicts a fixed future window of hand poses
+        (<em>L</em>&nbsp;=&nbsp;45 frames) conditioned on (i) the corresponding body-motion window and
+        (ii) a short buffer of previously generated hand frames (<em>P</em>&nbsp;=&nbsp;10 frames). Feeding
+        this history buffer into the next segment is what keeps consecutive clips <strong>temporally
+          continuous</strong>, with no visible seams at window boundaries, while still allowing
+        arbitrarily long, real-time rollout.
+      </p>
+      <p>
+        To make the model invariant to where the character is in the world, every segment is processed in a
+        canonical frame: the <strong>root of its first frame is shifted to the origin</strong>, and the hand
+        end-effectors are reset to identity. The network therefore only ever reasons about
+        <em>relative</em> body&ndash;hand dynamics, which is a large part of why the learned manifold
+        transfers so well across datasets and in-the-wild inputs. The representation used for each segment
+        is summarized below.
+      </p>
+      <div class="split">
+        <div class="split-media">
+          <img src="assets/inputandoutput.jpg"
+            alt="Input body-motion representation and output hand-motion representation" />
+        </div>
+        <div class="split-text">
+          <h3>Body Motion (input)</h3>
+          <ul class="bullets">
+            <li>Joint position + velocity + local rotation.</li>
+            <li>The root of the first frame is shifted to zero.</li>
+            <li>The hand end-effector is set to identity.</li>
+          </ul>
+          <h3>Hand Motion (output)</h3>
+          <ul class="bullets">
+            <li>Wrist joints (root): predicted in global orientation.</li>
+            <li>Finger joints: predicted in local coordinates.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TRAINING DATA ============ -->
+    <section class="section">
+      <h2>Where the prior learns from</h2>
+      <p>
+        The kinematic prior is trained on <strong>~100 hours</strong> of diverse, unlabeled motion drawn
+        from public datasets and in-house captures, spanning locomotion, daily activities, and dyadic
+        interactions. 
+      </p>
+      <div class="barchart">
+        <div class="bar-row">
+          <span class="bar-label">MotionPersona</span>
+          <span class="bar-track"><span class="bar-fill" style="width: 100%"></span></span>
+          <span class="bar-value">50 h</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">BEAT</span>
+          <span class="bar-track"><span class="bar-fill" style="width: 60%"></span></span>
+          <span class="bar-value">30 h</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">InterAct</span>
+          <span class="bar-track"><span class="bar-fill" style="width: 20%"></span></span>
+          <span class="bar-value">10 h</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">In-house capture</span>
+          <span class="bar-track"><span class="bar-fill" style="width: 20%"></span></span>
+          <span class="bar-value">10 h</span>
+        </div>
+      </div>
+      <p class="caption">Composition of the ~100-hour training pool by source.</p>
+    </section>
+
+    <!-- ============ RESULTS: DIVERSITY / SAMPLING ============ -->
+    <section class="section">
+      <h2>One body, many plausible hands</h2>
+      <p>
+        Our prior models a <em>distribution</em> of plausible completions rather than memorizing a single
+        clip. The same body input yields distinct yet natural hand motions under different random seeds.
+      </p>
+      <div class="media-grid two">
+        <figure class="media">
+          <video src="assets/videos/sec2_sampling_1.mp4" autoplay loop muted playsinline></video>
+        </figure>
+        <figure class="media">
+          <video src="assets/videos/sec2_sampling_2.mp4" autoplay loop muted playsinline></video>
+        </figure>
+      </div>
+      <p class="caption">Different random seeds, same body motion &mdash; diverse, plausible hand articulations.</p>
+    </section>
+
+    <!-- ============ RESULTS: IN THE WILD ============ -->
+    <section class="section">
+      <h2>Robust on in-the-wild motion</h2>
+      <p>
+        On out-of-distribution body motions from AMASS and HunyuanMotion text-to-motion outputs &mdash;
+        unseen during training and without ground-truth hands &mdash; our prior still generates hands
+        consistent with the upstream arm dynamics, and can be paired with external body-motion generators.
+      </p>
+      <div class="carousel">
+        <button class="carousel-btn prev" type="button" aria-label="Previous">&#8249;</button>
+        <div class="carousel-track">
+          <div class="carousel-item"><video src="assets/videos/sec4_wild_0.mp4" autoplay loop muted playsinline></video>
+          </div>
+          <div class="carousel-item"><video src="assets/videos/sec4_wild_1.mp4" autoplay loop muted playsinline></video>
+          </div>
+          <div class="carousel-item"><video src="assets/videos/sec4_wild_2.mp4" autoplay loop muted playsinline></video>
+          </div>
+          <div class="carousel-item"><video src="assets/videos/sec4_wild_3.mp4" autoplay loop muted playsinline></video>
+          </div>
+          <div class="carousel-item"><video src="assets/videos/sec4_wild_4.mp4" autoplay loop muted playsinline></video>
+          </div>
+          <div class="carousel-item"><video src="assets/videos/sec4_wild_5.mp4" autoplay loop muted playsinline></video>
+          </div>
+          <div class="carousel-item"><video src="assets/videos/sec4_wild_6.mp4" autoplay loop muted playsinline></video>
+          </div>
+          <div class="carousel-item"><video src="assets/videos/sec4_wild_7.mp4" autoplay loop muted playsinline></video>
+          </div>
+        </div>
+        <button class="carousel-btn next" type="button" aria-label="Next">&#8250;</button>
+      </div>
+      <p class="caption">Robustness on in-the-wild body motions from AMASS and HunyuanMotion &mdash; use the arrows to
+        page through.</p>
+    </section>
+
+    <!-- ============ RESULTS: SEMANTIC CONTROL (ATTRIBUTE + TEXT) ============ -->
+    <section class="section">
+      <h2>Semantic control: attributes and text</h2>
+      <p>
+        Lightweight adapters steer the frozen prior toward user intent. Attribute control injects only into
+        the last, fine-grained layers to preserve global body&ndash;hand consistency, while text control is
+        enabled across the full kinematic hierarchy so it can affect both global dynamics and fine finger
+        articulation.
+      </p>
+      <figure class="media">
+        <video src="assets/videos/sec3_attribute.mp4" autoplay loop muted playsinline controls></video>
+        <figcaption>Attribute-driven: varying the fist-tightness level while keeping the body motion fixed.</figcaption>
+      </figure>
+      <figure class="media">
+        <video src="assets/videos/sec3_text.mp4" autoplay loop muted playsinline controls></video>
+        <figcaption>Text-driven: a prompt steers both global gesture dynamics and finger articulation.</figcaption>
+      </figure>
+    </section>
+
+
+    <!-- ============ RESULTS: BLENDER ADD-ON ============ -->
+    <section class="section">
+      <h2>Interactive Blender add-on</h2>
+      <p>
+        We provide a Blender add-on for interactive authoring that supports efficient generation
+        (9000 frames in ~15 seconds on a MacBook CPU), fitting directly into production animation pipelines.
+      </p>
+      <figure class="media">
+        <video src="assets/videos/sec5_blender.mp4" autoplay loop muted playsinline controls></video>
+        <figcaption>Left to right: our generation, identity hands, original input.</figcaption>
+      </figure>
+    </section>
+
+    <!-- ============ BIBTEX ============ -->
+    <section class="section">
+      <h2>BibTeX</h2>
+      <div class="bibtex">
+        <button class="copy-btn" type="button" aria-label="Copy BibTeX">Copy</button>
+        <pre><code>@article{shi2026priorfirst,
+  title   = {Prior-First, Condition-Second: Scalable and Controllable Hand Motion Completion},
+  author  = {Shi, Mingyi and Chen, Xuelin and Komura, Taku},
+  journal = {Computer Graphics Forum},
+  year    = {2026},
+  doi     = {10.1111/cgf.70568},
+  note    = {ACM SIGGRAPH / Eurographics Symposium on Computer Animation 2026}
+}</code></pre>
+      </div>
+    </section>
+
+    <!-- ============ ACKNOWLEDGEMENTS ============ -->
+    <section class="section">
+      <h2>Acknowledgements</h2>
+      <p class="ack">
+        We thank the anonymous reviewers for their constructive feedback &mdash; including those who did not
+        manage to obtain good results by running our add-on on randomly perturbed motion. We are also
+        grateful to the friends who kindly provided test cases. Except for the training data, the examples
+        shown in the videos are the copyright of their respective owners and are used here for demonstration
+        purposes only.
+      </p>
+    </section>
+
+    <footer class="footer">
+      <p>Page layout inspired by the FramePack project page.</p>
+    </footer>
+
+  </main>
+
+  <script src="main.js"></script>
+</body>
+
+</html>
