@@ -64,7 +64,10 @@
 
     <!-- ============ TEASER ============ -->
     <section class="teaser">
-      <video src="assets/teaser.mp4" autoplay loop muted playsinline></video>
+      <picture>
+        <source srcset="assets/teaser.webp" type="image/webp" />
+        <img src="assets/teaser.png" alt="Teaser: diverse hand motions completed by our method" />
+      </picture>
       <p class="caption">
         Our method robustly completes high-fidelity hand motion conditioned on global body dynamics and
         optional semantic controls. Instead of training a fully end-to-end conditioned generator, we
